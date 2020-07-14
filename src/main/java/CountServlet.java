@@ -13,15 +13,20 @@ public class CountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException {
 
+        response.setContentType("text/html");
+
+        //incrementing counter
         counter++;
 
+        //reset variable for query string to reset counter
         String reset = request.getParameter("reset");
+        //logic for query string wrapped in a try-catch to handel nullpointerexception
+        try {
+            if (reset.equals("true") || reset.equals("yes")) {
+                counter = 0;
+            }
+        } catch (NullPointerException ignored) {}
 
-//        if(reset.equals("true") || reset.equals("yes")){
-//            counter = 0;
-//        }
-
-        response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
 
