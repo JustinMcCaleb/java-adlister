@@ -11,9 +11,15 @@ public class CountServlet extends HttpServlet {
     private int counter = 0;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, NullPointerException {
 
-        counter += 1;
+        counter++;
+
+        String reset = request.getParameter("reset");
+
+//        if(reset.equals("true") || reset.equals("yes")){
+//            counter = 0;
+//        }
 
         response.setContentType("text/html");
 
