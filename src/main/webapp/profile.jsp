@@ -8,9 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Profile Page</title>
 </head>
 <body>
+    <%@ include file ="partials/navbar.jsp"%>
 
+
+    <p>Welcome to your super fun profile page!</p>
+
+    <%@ include file ="partials/footer.jsp"%>
 </body>
 </html>
