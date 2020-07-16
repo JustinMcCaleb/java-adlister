@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-    <head>
-        <title>Login Page</title>
+    <head> 
+        <% request.setAttribute("title", "Login"); %> 
+        <%@ include file ="partials/head.jsp" %> 
     </head>
     <body>
-        <%@ include file ="partials/navbar.jsp"%>
+        <%@ include file ="partials/navbar.jsp" %>
 
         <h3>Login to your profile.</h3>
         <%-- Login Forms --%>
