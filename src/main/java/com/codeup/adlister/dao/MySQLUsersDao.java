@@ -3,9 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MySQLUsersDao implements Users{
 
@@ -26,7 +24,26 @@ public class MySQLUsersDao implements Users{
 
     @Override
     public User findByUsername(String username) {
-        return null;
+        User requestedUser = new User();
+
+        String sqlQuery = "SELECT * FROM users WHERE username LIKE ?";
+        String userInputWithWildcards = "%" + username + "%";
+
+        try {
+            PreparedStatement prepStmt = connection.prepareStatement(sqlQuery);
+            prepStmt.setString(1, userInputWithWildcards);
+            ResultSet rs = prepStmt.executeQuery();
+
+            rs.next();
+            requestedUser.setId(rs.getLong("id"));
+            requestedUser.setUsername(rs.getString("username"));
+            requestedUser.setEmail(rs.getString("email"));
+            requestedUser.setPassword(rs.getString("password"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return requestedUser;
     }
 
     @Override
