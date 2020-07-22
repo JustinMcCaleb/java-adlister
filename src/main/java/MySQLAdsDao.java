@@ -57,11 +57,17 @@ public class MySQLAdsDao implements Ads{
 
         long insertedAdId = 0;
 
-        String insertQuery = String.format("INSERT INTO ads (user_id, title, description) VALUES ('%d','%s','%s')",
+//        String insertQuery = String.format("INSERT INTO ads (user_id, title, description) VALUES ('%d','%s','%s')",
+//                ad.getUserId(),
+//                ad.getTitle(),
+//                ad.getDescription()
+//        );
+
+        String insertQuery = String.format(
+                "INSERT INTO ads (user_id, title, description) VALUES (%d, '%s', '%s')",
                 ad.getUserId(),
                 ad.getTitle(),
-                ad.getDescription()
-        );
+                ad.getDescription());
 
         try {
 
