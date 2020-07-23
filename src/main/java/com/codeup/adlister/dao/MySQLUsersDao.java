@@ -46,8 +46,43 @@ public class MySQLUsersDao implements Users{
         return requestedUser;
     }
 
+    //Create an Insert SQL query with placeholders
+    //Create a connection using a prepared statement
+    //Insert values into placeholders of prepared statement
+    //Return generated keys after statement execute to be able to return the ID of new user
+
     @Override
     public Long insert(User user) {
-        return null;
+
+        Long returnedUserId = null;
+        String insertSqlQuery = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
+
+        try {
+            PreparedStatement prepStmt = connection.prepareStatement(insertSqlQuery, Statement.RETURN_GENERATED_KEYS);
+            prepStmt.setString(1, user.getUsername());
+            prepStmt.setString(2, user.getEmail());
+            prepStmt.setString(3, user.getPassword());
+
+            prepStmt.executeUpdate();
+            ResultSet rs = prepStmt.getGeneratedKeys();
+            rs.next();
+            returnedUserId = rs.getLong(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return returnedUserId;
+    }
+
+    public static void main(String[] args) {
+        Users myUser = new MySQLUsersDao(new Config());
+        System.out.println(myUser.findByUsername("justin"));
+
+        User newUser = new User();
+        newUser.setUsername("Cayenne Pepper");
+        newUser.setEmail("CayPep@email.com");
+        newUser.setPassword("reallyStrongPassword");
+
+        System.out.println(myUser.insert(newUser));
+
     }
 }
