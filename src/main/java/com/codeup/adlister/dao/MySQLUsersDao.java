@@ -74,15 +74,15 @@ public class MySQLUsersDao implements Users{
     }
 
     public static void main(String[] args) {
-        Users myUser = new MySQLUsersDao(new Config());
-        System.out.println(myUser.findByUsername("justin"));
+//        Users myUser = new MySQLUsersDao(new Config());
+//        System.out.println(myUser.findByUsername("justin"));
 
-        User newUser = new User();
-        newUser.setUsername("Cayenne Pepper");
-        newUser.setEmail("CayPep@email.com");
-        newUser.setPassword("reallyStrongPassword");
+//        User newUser = new User();
+//        newUser.setUsername("Cayenne Pepper");
+//        newUser.setEmail("CayPep@email.com");
+//        newUser.setPassword("reallyStrongPassword");
 
-        System.out.println(myUser.insert(newUser));
+//        System.out.println(myUser.insert(newUser));
 
     }
 }
